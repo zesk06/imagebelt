@@ -19,6 +19,10 @@ def thumbnail(image_file, max_size=1200):
     if not os.path.exists(back_file):
         try:
             my_image = Image.open(image_file)
+            # shrink only if size if bigger
+            if max(my_image.size) <= max_size:
+                print('smaller than requested %s' % image_file)
+                return
             print('backup to %s' % back_file)
             my_image.save(back_file, 'JPEG')
             my_image.thumbnail(size)
