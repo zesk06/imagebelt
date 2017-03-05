@@ -11,7 +11,21 @@ import glob
 import multiprocessing
 from PIL import Image
 
-__version__ = '0.0.2'
+__version__ = '0.0.3'
+
+
+def main():
+    """The main
+    """
+    parser = argparse.ArgumentParser()
+    parser.add_argument('folder', help='The folder to thumbnailize')
+    args = parser.parse_args()
+
+    file_list = [os.path.join(args.folder, in_file)
+                 for in_file in glob.glob('%s/**/*.jpg' % args.folder)]
+
+    pool = multiprocessing.Pool()
+    pool.map(thumbnail, file_list)
 
 
 def thumbnail(image_file, max_size=1200):
@@ -39,12 +53,4 @@ def thumbnail(image_file, max_size=1200):
 
 
 if __name__ == '__main__':
-    PARSER = argparse.ArgumentParser()
-    PARSER.add_argument('folder', help='The folder to thumbnailize')
-    ARGS = PARSER.parse_args()
-
-    FILE_LIST = [os.path.join(ARGS.folder, in_file)
-                 for in_file in glob.glob('%s/**/*.jpg' % ARGS.folder)]
-
-    POOL = multiprocessing.Pool()
-    POOL.map(thumbnail, FILE_LIST)
+    main()
