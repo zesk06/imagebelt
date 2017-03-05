@@ -3,11 +3,15 @@
 
 """An image management library
 """
+from __future__ import print_function
+
 import argparse
 import os
 import glob
 import multiprocessing
 from PIL import Image
+
+__version__ = '0.0.2'
 
 
 def thumbnail(image_file, max_size=1200):
@@ -39,8 +43,8 @@ if __name__ == '__main__':
     PARSER.add_argument('folder', help='The folder to thumbnailize')
     ARGS = PARSER.parse_args()
 
-    file_list = [os.path.join(ARGS.folder, in_file)
+    FILE_LIST = [os.path.join(ARGS.folder, in_file)
                  for in_file in glob.glob('%s/**/*.jpg' % ARGS.folder)]
 
     POOL = multiprocessing.Pool()
-    POOL.map(thumbnail, file_list)
+    POOL.map(thumbnail, FILE_LIST)
