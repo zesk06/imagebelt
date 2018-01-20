@@ -3,15 +3,12 @@
 
 from setuptools import setup, find_packages
 
-# notez qu'on import la lib
-import imagebelt.imagebelt
-
 #
 setup(
     #
     name='imagebelt',
     # la version du code
-    version=imagebelt.imagebelt.__version__,
+    version="0.0.3",
 
     packages=find_packages(),
 
@@ -36,6 +33,7 @@ setup(
         "Natural Language :: French",
         "Operating System :: OS Independent",
         "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3",
         "Topic :: Multimedia :: Graphics",
     ],
 

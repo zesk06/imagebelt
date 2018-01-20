@@ -11,8 +11,6 @@ import glob
 import multiprocessing
 from PIL import Image
 
-__version__ = '0.0.3'
-
 
 def main():
     """The main
@@ -22,7 +20,7 @@ def main():
     args = parser.parse_args()
 
     file_list = [os.path.join(args.folder, in_file)
-                 for in_file in glob.glob('%s/**/*.jpg' % args.folder)]
+                 for in_file in glob.glob('%s/*.jpg' % args.folder)]
 
     pool = multiprocessing.Pool()
     pool.map(thumbnail, file_list)
@@ -41,11 +39,11 @@ def thumbnail(image_file, max_size=1200):
             if max(my_image.size) <= max_size:
                 print('smaller than requested %s' % image_file)
                 return
-            print('backup to %s' % back_file)
+            print('back to %s' % back_file)
             my_image.save(back_file, 'JPEG')
             my_image.thumbnail(size)
             my_image.save(outfile, 'JPEG')
-            print('thumbnailize to %s' % outfile)
+            print('thmb to %s' % outfile)
         except IOError:
             print('cannot create thumbnail for %s' % image_file)
         return
