@@ -3,8 +3,6 @@
     "python.unitTest.pyTestEnabled": false,
     "python.unitTest.unittestEnabled": false,
     "python.unitTest.nosetestsEnabled": false,
-          // Path to Python, you can use a custom version of Python by modifying this setting to include the full path.
-    "python.pythonPath": "python3",
-    // Path to Pylint, you can use a custom version of pylint by modifying this setting to include the full path.
-    "python.linting.pylintPath": "/usr/local/bin/pylint"
+    // Path to Python, you can use a custom version of Python by modifying this setting to include the full path.
+    "python.pythonPath": "/Users/zesk/.virtualenvs/imagebelt/bin/python",
 }
