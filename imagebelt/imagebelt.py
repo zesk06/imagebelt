@@ -85,21 +85,21 @@ def exiftool(
     image_path, title, description=None, tags=None, comments=None, lat_lon=None
 ):
     """Change image metadata using exiftool"""
-    cmd = ["exiftool", "%s" % image_path]
+    cmd = ["exiftool", f"{image_path}"]
     if title:
-        cmd += ['-Title="%s"' % title]
+        cmd += [f'-Title="{title}"']
     if description:
-        cmd += ['-Description="%s"' % description]
-        cmd += ['-ImageDescription="%s"' % description]
+        cmd += [f'-Description="{description}"']
+        cmd += [f'-ImageDescription="{description}"']
     if comments:
 
         cmd += ['-UserComment="%s"' % ".".join(comments)]
         cmd += ['-XPComment="%s"' % ".".join(comments)]
     if tags:
         for tag in [tag.strip() for tag in tags]:
-            cmd += ['-Subject="%s"' % tag]
-            cmd += ['-HierarchicalSubject="%s"' % tag]
-            cmd += ['-Keywords="%s"' % tag]
+            cmd += [f'-Subject="{tag}"']
+            cmd += [f'-HierarchicalSubject="{tag}"']
+            cmd += [f'-Keywords="{tag}"']
     if lat_lon:
         cmd += ['-GPSLatitude="%s"' % lat_lon[0], '-GPSLongitude="%s"' % lat_lon[1]]
     # to change date:
@@ -131,17 +131,17 @@ def thumbnail(image_file, max_size=1200):
             my_image = Image.open(image_file)
             # shrink only if size if bigger
             if max(my_image.size) <= max_size:
-                print("smaller than requested %s" % image_file)
+                print(f"smaller than requested {image_file}")
                 return
-            print("back to %s" % back_file)
+            print(f"back to {back_file}")
             my_image.save(back_file, "JPEG")
             my_image.thumbnail(size)
             my_image.save(outfile, "JPEG")
-            print("thmb to %s" % outfile)
+            print(f"thmb to {outfile}" % outfile)
         except IOError:
-            print("cannot create thumbnail for %s" % image_file)
+            print(f"cannot create thumbnail for {image_file}")
         return
-    print("already a backup file %s" % back_file)
+    print(f"already a backup file {back_file}")
 
 
 if __name__ == "__main__":
